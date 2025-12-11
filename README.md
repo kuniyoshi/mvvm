@@ -7,25 +7,53 @@ MVVM がどう構成されるか具体的にコードを確認します。
 構成
 ====
 
+レイヤ構成
+----------
+
+- Model レイヤ
+  ドメインモデル（Hero, Party など）と、その操作（編成変更）を表現します。
+
+- ViewModel レイヤ
+  View に表示するための状態・コマンドを公開します。
+  Party の編成変更を「トランザクション」として扱い、確定／キャンセルを制御します。
+
+- View レイヤ
+  UI Toolkit (UXML / USS) で構成します。
+  ViewModel にデータバインドし、ユーザー操作をコマンドとして ViewModel に伝えます。
+
 Model
+=====
+
+Position
+--------
+
+- `Near`
+- `Middle`
+- `Far`
+
+Hero
+----
+
+- `Name`
+- `Hp`
+- `Attack`
+- `Position`
+
+Position は編成の枠とは独立しています。
+
+Party
 -----
 
-### Position
+Party は 4 人の Hero で構成します。
 
-- Near
-- Middle
-- Far
+4 人の Hero はユニークです。
 
-### Hero
+ViewModel
+---------
 
-- Name
-- Hp
-- Attack
-- Position
 
-### Party
-
-4 人の Hero で構成します。
+トランザクション機能
+====================
 
 一連の編成の変更はトランザクションです。
 つまりロールバック可能です。
