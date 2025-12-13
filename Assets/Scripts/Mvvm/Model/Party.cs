@@ -56,7 +56,7 @@ namespace Mvvm.Model
             MembersChanged?.Invoke(_members);
         }
 
-        internal static void ValidateSlotIndex(int slotIndex)
+        public static void ValidateSlotIndex(int slotIndex)
         {
             if (slotIndex < 0 || slotIndex >= SlotCount)
             {
