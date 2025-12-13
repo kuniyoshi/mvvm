@@ -4,10 +4,10 @@ namespace Mvvm.ViewModel
 {
     public readonly struct HeroSelectionOption
     {
-        public Hero Hero { get; }
+        public Hero? Hero { get; }
         public bool IsCurrent { get; }
 
-        public HeroSelectionOption(Hero hero, bool isCurrent)
+        public HeroSelectionOption(Hero? hero, bool isCurrent)
         {
             Hero = hero;
             IsCurrent = isCurrent;

@@ -8,15 +8,15 @@ namespace Mvvm.Model
     {
         public const int SlotCount = 4;
 
-        private readonly Hero[] _members = new Hero[SlotCount];
+        private readonly Hero?[] _members = new Hero?[SlotCount];
 
-        public event Action<IReadOnlyList<Hero>> MembersChanged;
+        public event Action<IReadOnlyList<Hero?>> MembersChanged = delegate { };
 
         public Party()
         {
         }
 
-        public Party(IEnumerable<Hero> initialMembers)
+        public Party(IEnumerable<Hero?> initialMembers)
         {
             if (initialMembers == null)
             {
@@ -33,7 +33,7 @@ namespace Mvvm.Model
             ValidateUniqueHeroes(_members);
         }
 
-        public Hero GetHero(int slotIndex)
+        public Hero? GetHero(int slotIndex)
         {
             ValidateSlotIndex(slotIndex);
             return _members[slotIndex];
@@ -44,7 +44,7 @@ namespace Mvvm.Model
             return new PartyTransaction(this, _members);
         }
 
-        internal void ApplySnapshot(Hero[] snapshot)
+        internal void ApplySnapshot(Hero?[] snapshot)
         {
             if (snapshot.Length != SlotCount)
             {
@@ -64,7 +64,7 @@ namespace Mvvm.Model
             }
         }
 
-        private static void ValidateUniqueHeroes(IEnumerable<Hero> heroes)
+        private static void ValidateUniqueHeroes(IEnumerable<Hero?> heroes)
         {
             var set = new HashSet<Hero>();
             foreach (var hero in heroes)

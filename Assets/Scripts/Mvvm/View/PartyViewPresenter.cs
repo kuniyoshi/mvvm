@@ -13,17 +13,17 @@ namespace Mvvm.View
         private List<HeroPreset> _heroPresets = new List<HeroPreset>();
 
         [SerializeField]
-        private StyleSheet _styleSheet;
+        private StyleSheet? _styleSheet;
 
-        private UIDocument _document;
-        private PartyViewModel _viewModel;
+        private UIDocument? _document;
+        private PartyViewModel? _viewModel;
         private readonly List<SlotVisual> _slotVisuals = new List<SlotVisual>();
-        private Button _confirmButton;
-        private Button _cancelButton;
-        private VisualElement _heroDialog;
-        private ScrollView _heroList;
-        private Label _heroDialogTitle;
-        private Button _closeDialogButton;
+        private Button? _confirmButton;
+        private Button? _cancelButton;
+        private VisualElement? _heroDialog;
+        private ScrollView? _heroList;
+        private Label? _heroDialogTitle;
+        private Button? _closeDialogButton;
 
         private void Awake()
         {
@@ -69,6 +69,11 @@ namespace Mvvm.View
 
         private void BindVisualTree()
         {
+            if (_document == null)
+            {
+                return;
+            }
+
             var root = _document.rootVisualElement;
             _confirmButton = root.Q<Button>("confirm-button");
             _cancelButton = root.Q<Button>("cancel-button");
@@ -249,12 +254,12 @@ namespace Mvvm.View
         {
             public int Index { get; }
             private readonly Button _button;
-            private readonly Label _titleLabel;
-            private readonly Label _nameLabel;
-            private readonly Label _statsLabel;
-            private readonly Label _positionLabel;
+            private readonly Label? _titleLabel;
+            private readonly Label? _nameLabel;
+            private readonly Label? _statsLabel;
+            private readonly Label? _positionLabel;
 
-            public SlotVisual(int index, Button button, Label titleLabel, Label nameLabel, Label statsLabel, Label positionLabel)
+            public SlotVisual(int index, Button button, Label? titleLabel, Label? nameLabel, Label? statsLabel, Label? positionLabel)
             {
                 Index = index;
                 _button = button;

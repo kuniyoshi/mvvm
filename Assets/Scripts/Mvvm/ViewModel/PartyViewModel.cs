@@ -13,7 +13,7 @@ namespace Mvvm.ViewModel
         private PartyTransaction _transaction;
         private readonly List<PartySlotViewModel> _slots;
 
-        public event Action StateChanged;
+        public event Action StateChanged = delegate { };
 
         public PartyViewModel(Party party, IEnumerable<Hero> heroes)
         {
@@ -45,7 +45,7 @@ namespace Mvvm.ViewModel
 
         public int SelectedSlotIndex { get; private set; } = -1;
 
-        public PartySlotViewModel SelectedSlot => SelectedSlotIndex >= 0 ? _slots[SelectedSlotIndex] : null;
+        public PartySlotViewModel? SelectedSlot => SelectedSlotIndex >= 0 ? _slots[SelectedSlotIndex] : null;
 
         public bool HasSelection => SelectedSlotIndex >= 0;
 
@@ -84,14 +84,14 @@ namespace Mvvm.ViewModel
             return options;
         }
 
-        public void AssignHero(int slotIndex, Hero hero)
+        public void AssignHero(int slotIndex, Hero? hero)
         {
             Party.ValidateSlotIndex(slotIndex);
             _transaction.AssignHero(slotIndex, hero);
             SyncSlotsFromTransaction();
         }
 
-        public void AssignHeroToSelected(Hero hero)
+        public void AssignHeroToSelected(Hero? hero)
         {
             if (!HasSelection)
             {
