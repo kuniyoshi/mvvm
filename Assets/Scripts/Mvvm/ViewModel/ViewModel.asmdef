@@ -1,3 +1,6 @@
 {
-	"name": "ViewModel"
+	"name": "ViewModel",
+	"references": [
+		"Model"
+	]
 }

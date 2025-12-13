@@ -1,3 +1,8 @@
 {
-	"name": "View"
+	"name": "View",
+	"references": [
+		"ViewModel",
+		"Model",
+		"UnityEngine.UIElementsModule"
+	]
 }

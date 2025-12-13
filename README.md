@@ -24,6 +24,8 @@ MVVM がどう構成されるか具体的にコードを確認します。
 Model
 =====
 
+ファイルは Assets/Scripts/Mvvm/Model/ 以下に保存します。
+
 Position
 --------
 
@@ -56,6 +58,8 @@ Party は 4 人の Hero で構成します。
 
 View
 ====
+
+ファイルは Assets/Scripts/Mvvm/View/ 以下に保存します。
 
 UI Toolkit で構成します。
 

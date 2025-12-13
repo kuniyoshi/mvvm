@@ -1,0 +1,97 @@
+.party-root {
+    padding: 24px;
+    gap: 16px;
+}
+
+.title {
+    font-size: 20px;
+    unity-font-style: bold;
+}
+
+.party-slots {
+    flex-direction: row;
+    gap: 12px;
+}
+
+.party-slot {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px;
+    min-width: 150px;
+    gap: 4px;
+}
+
+.party-slot.selected {
+    border-color: #4e8cff;
+    border-width: 2px;
+}
+
+.slot-title {
+    font-size: 14px;
+    unity-font-style: bold;
+}
+
+.slot-name {
+    font-size: 16px;
+}
+
+.slot-stats,
+.slot-position {
+    font-size: 12px;
+    color: #999999;
+}
+
+.actions {
+    flex-direction: row;
+    gap: 8px;
+}
+
+.action-button {
+    min-width: 100px;
+}
+
+.hero-dialog {
+    border-top-width: 1px;
+    border-top-color: #dddddd;
+    padding-top: 16px;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.hero-dialog.hidden {
+    display: none;
+}
+
+.hero-list {
+    max-height: 240px;
+}
+
+.hero-item {
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-bottom: 6px;
+}
+
+.hero-item.current {
+    border-color: #4e8cff;
+}
+
+.hero-item--empty {
+    opacity: 0.8;
+}
+
+.hero-stats {
+    font-size: 12px;
+    color: #888888;
+}
+
+.dialog-title {
+    font-size: 16px;
+    unity-font-style: bold;
+}
+
+.dialog-actions {
+    flex-direction: row;
+    justify-content: flex-end;
+}
