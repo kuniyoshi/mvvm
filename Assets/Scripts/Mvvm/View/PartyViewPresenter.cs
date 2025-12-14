@@ -10,14 +10,14 @@ namespace Mvvm.View
     public sealed class PartyViewPresenter : MonoBehaviour
     {
         [SerializeField]
-        private List<HeroPreset> _heroPresets = new List<HeroPreset>();
+        private List<HeroPreset> heroPresets = new();
 
         [SerializeField]
-        private StyleSheet? _styleSheet;
+        private StyleSheet? styleSheet;
 
         private UIDocument? _document;
         private PartyViewModel? _viewModel;
-        private readonly List<SlotVisual> _slotVisuals = new List<SlotVisual>();
+        private readonly List<SlotVisual> _slotVisuals = new();
         private Button? _confirmButton;
         private Button? _cancelButton;
         private VisualElement? _heroDialog;
@@ -35,18 +35,18 @@ namespace Mvvm.View
                 return;
             }
 
-            if (_styleSheet != null)
+            if (styleSheet != null)
             {
-                _document.rootVisualElement.styleSheets.Add(_styleSheet);
+                _document.rootVisualElement.styleSheets.Add(styleSheet);
             }
 
-            if (_heroPresets == null || _heroPresets.Count == 0)
+            if (heroPresets == null || heroPresets.Count == 0)
             {
-                _heroPresets = HeroPreset.CreateDefaultPresets();
+                heroPresets = HeroPreset.CreateDefaultPresets();
             }
 
-            var heroes = new List<Hero>(_heroPresets.Count);
-            foreach (var preset in _heroPresets)
+            var heroes = new List<Hero>(heroPresets.Count);
+            foreach (var preset in heroPresets)
             {
                 heroes.Add(preset.ToHero());
             }

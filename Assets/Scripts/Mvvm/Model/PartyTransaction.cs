@@ -13,7 +13,7 @@ namespace Mvvm.Model
 
         internal PartyTransaction(Party party, Hero?[] members)
         {
-            _party = party ?? throw new ArgumentNullException(nameof(party));
+            _party = party;
             _originalSnapshot = new Hero?[Party.SlotCount];
             _workingSnapshot = new Hero?[Party.SlotCount];
             Array.Copy(members, _originalSnapshot, Party.SlotCount);

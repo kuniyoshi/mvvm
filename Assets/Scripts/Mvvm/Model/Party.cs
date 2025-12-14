@@ -18,11 +18,6 @@ namespace Mvvm.Model
 
         public Party(IEnumerable<Hero?> initialMembers)
         {
-            if (initialMembers == null)
-            {
-                throw new ArgumentNullException(nameof(initialMembers));
-            }
-
             var list = initialMembers.ToList();
             if (list.Count != SlotCount)
             {
@@ -53,7 +48,7 @@ namespace Mvvm.Model
 
             ValidateUniqueHeroes(snapshot);
             Array.Copy(snapshot, _members, SlotCount);
-            MembersChanged?.Invoke(_members);
+            MembersChanged.Invoke(_members);
         }
 
         public static void ValidateSlotIndex(int slotIndex)
