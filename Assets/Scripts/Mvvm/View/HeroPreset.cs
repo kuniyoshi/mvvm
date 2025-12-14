@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using Mvvm.Model;
 
 namespace Mvvm.View
@@ -14,22 +13,22 @@ namespace Mvvm.View
 
         public Hero ToHero()
         {
-            var safeName = string.IsNullOrWhiteSpace(Name) ? "Hero" : Name;
-            var safeHp = Math.Max(1, Hp);
-            var safeAttack = Math.Max(1, Attack);
-            return new Hero(safeName, safeHp, safeAttack, Position);
-        }
-
-        public static List<HeroPreset> CreateDefaultPresets()
-        {
-            return new List<HeroPreset>
+            if (string.IsNullOrWhiteSpace(Name))
             {
-                new HeroPreset { Name = "Satoka", Hp = 120, Attack = 15, Position = Position.Near },
-                new HeroPreset { Name = "Io", Hp = 100, Attack = 18, Position = Position.Near },
-                new HeroPreset { Name = "Tsubame", Hp = 90, Attack = 20, Position = Position.Middle },
-                new HeroPreset { Name = "Yumi", Hp = 70, Attack = 25, Position = Position.Far },
-                new HeroPreset { Name = "Mana", Hp = 80, Attack = 12, Position = Position.Far }
-            };
+                throw new InvalidOperationException("HeroPreset の Name は必須です。");
+            }
+
+            if (Hp <= 0)
+            {
+                throw new InvalidOperationException("HeroPreset の Hp は 1 以上で設定してください。");
+            }
+
+            if (Attack <= 0)
+            {
+                throw new InvalidOperationException("HeroPreset の Attack は 1 以上で設定してください。");
+            }
+
+            return new Hero(Name, Hp, Attack, Position);
         }
     }
 }

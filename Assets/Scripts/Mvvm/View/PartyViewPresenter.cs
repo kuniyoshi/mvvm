@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Mvvm.Model;
@@ -41,7 +42,7 @@ namespace Mvvm.View
 
             if (heroPresets.Count == 0)
             {
-                heroPresets = HeroPreset.CreateDefaultPresets();
+                throw new InvalidOperationException("HeroPreset を 1 件以上設定してください。");
             }
 
             _viewModel = new PartyViewModel(
