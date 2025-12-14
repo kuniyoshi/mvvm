@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Mvvm.Model;
 using Mvvm.ViewModel;
 using UnityEngine;
@@ -9,11 +10,9 @@ namespace Mvvm.View
     [RequireComponent(typeof(UIDocument))]
     public sealed class PartyViewPresenter : MonoBehaviour
     {
-        [SerializeField]
-        private List<HeroPreset> heroPresets = new();
+        [SerializeField] private List<HeroPreset> heroPresets = new();
 
-        [SerializeField]
-        private StyleSheet? styleSheet;
+        [SerializeField] private StyleSheet? styleSheet;
 
         private UIDocument? _document;
         private PartyViewModel? _viewModel;
@@ -40,19 +39,16 @@ namespace Mvvm.View
                 _document.rootVisualElement.styleSheets.Add(styleSheet);
             }
 
-            if (heroPresets == null || heroPresets.Count == 0)
+            if (heroPresets.Count == 0)
             {
                 heroPresets = HeroPreset.CreateDefaultPresets();
             }
 
-            var heroes = new List<Hero>(heroPresets.Count);
-            foreach (var preset in heroPresets)
-            {
-                heroes.Add(preset.ToHero());
-            }
-
-            var party = new Party();
-            _viewModel = new PartyViewModel(party, heroes);
+            _viewModel = new PartyViewModel(
+                new Party(),
+                heroPresets.Select(preset => preset.ToHero())
+                    .ToList()
+            );
             _viewModel.StateChanged += RefreshView;
 
             BindVisualTree();
@@ -84,26 +80,17 @@ namespace Mvvm.View
 
             if (_confirmButton != null)
             {
-                _confirmButton.clicked += () =>
-                {
-                    _viewModel?.ConfirmChanges();
-                };
+                _confirmButton.clicked += () => { _viewModel?.ConfirmChanges(); };
             }
 
             if (_cancelButton != null)
             {
-                _cancelButton.clicked += () =>
-                {
-                    _viewModel?.CancelChanges();
-                };
+                _cancelButton.clicked += () => { _viewModel?.CancelChanges(); };
             }
 
             if (_closeDialogButton != null)
             {
-                _closeDialogButton.clicked += () =>
-                {
-                    _viewModel?.ClearSelection();
-                };
+                _closeDialogButton.clicked += () => { _viewModel?.ClearSelection(); };
             }
 
             _slotVisuals.Clear();
@@ -259,7 +246,8 @@ namespace Mvvm.View
             private readonly Label? _statsLabel;
             private readonly Label? _positionLabel;
 
-            public SlotVisual(int index, Button button, Label? titleLabel, Label? nameLabel, Label? statsLabel, Label? positionLabel)
+            public SlotVisual(int index, Button button, Label? titleLabel, Label? nameLabel, Label? statsLabel,
+                Label? positionLabel)
             {
                 Index = index;
                 _button = button;

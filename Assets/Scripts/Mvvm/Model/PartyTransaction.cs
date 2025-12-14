@@ -32,7 +32,7 @@ namespace Mvvm.Model
 
         public bool Contains(Hero hero)
         {
-            if (hero == null)
+            if (hero == null) // TODO: Hero が nullable かどうか
             {
                 throw new ArgumentNullException(nameof(hero));
             }

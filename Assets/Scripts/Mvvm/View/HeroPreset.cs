@@ -24,11 +24,11 @@ namespace Mvvm.View
         {
             return new List<HeroPreset>
             {
-                new HeroPreset { Name = "Knight", Hp = 120, Attack = 15, Position = Position.Near },
-                new HeroPreset { Name = "Fighter", Hp = 100, Attack = 18, Position = Position.Near },
-                new HeroPreset { Name = "Ranger", Hp = 90, Attack = 20, Position = Position.Middle },
-                new HeroPreset { Name = "Mage", Hp = 70, Attack = 25, Position = Position.Far },
-                new HeroPreset { Name = "Priest", Hp = 80, Attack = 12, Position = Position.Far }
+                new HeroPreset { Name = "Satoka", Hp = 120, Attack = 15, Position = Position.Near },
+                new HeroPreset { Name = "Io", Hp = 100, Attack = 18, Position = Position.Near },
+                new HeroPreset { Name = "Tsubame", Hp = 90, Attack = 20, Position = Position.Middle },
+                new HeroPreset { Name = "Yumi", Hp = 70, Attack = 25, Position = Position.Far },
+                new HeroPreset { Name = "Mana", Hp = 80, Attack = 12, Position = Position.Far }
             };
         }
     }
