@@ -10,27 +10,17 @@ namespace Mvvm.Model
 
         private readonly Hero?[] _members = new Hero?[SlotCount];
 
-        public event Action<IReadOnlyList<Hero?>> MembersChanged = delegate { };
-
-        public Party()
-        {
-        }
+        public event Action<IReadOnlyList<Hero?>> MembersChanged = static delegate { };
 
         public Party(IEnumerable<Hero?> initialMembers)
         {
             var list = initialMembers.ToList();
-            if (list.Count != SlotCount)
-            {
-                throw new ArgumentException($"Party には {SlotCount} 枠が必要です。", nameof(initialMembers));
-            }
-
             list.CopyTo(_members, 0);
             ValidateUniqueHeroes(_members);
         }
 
         public Hero? GetHero(int slotIndex)
         {
-            ValidateSlotIndex(slotIndex);
             return _members[slotIndex];
         }
 
@@ -49,14 +39,6 @@ namespace Mvvm.Model
             ValidateUniqueHeroes(snapshot);
             Array.Copy(snapshot, _members, SlotCount);
             MembersChanged.Invoke(_members);
-        }
-
-        public static void ValidateSlotIndex(int slotIndex)
-        {
-            if (slotIndex < 0 || slotIndex >= SlotCount)
-            {
-                throw new ArgumentOutOfRangeException(nameof(slotIndex), $"slotIndex は 0 から {SlotCount - 1} で指定してください。");
-            }
         }
 
         private static void ValidateUniqueHeroes(IEnumerable<Hero?> heroes)
