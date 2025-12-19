@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using Mvvm.Model;
 
@@ -13,22 +14,14 @@ namespace Mvvm.ViewModel
         private PartyTransaction _transaction;
         private readonly List<PartySlotViewModel> _slots;
 
-        public event Action StateChanged = delegate { };
+        public event Action StateChanged = static delegate { };
 
         public PartyViewModel(Party party, IEnumerable<Hero> heroes)
         {
-            _party = party ?? throw new ArgumentNullException(nameof(party));
-
-            if (heroes == null)
-            {
-                throw new ArgumentNullException(nameof(heroes));
-            }
+            _party = party;
 
             var heroList = heroes.ToList();
-            if (heroList.Count == 0)
-            {
-                throw new ArgumentException("Hero は 1 人以上定義してください。", nameof(heroes));
-            }
+            Debug.Assert(heroList.Count > 0, "Hero は 1 人以上定義してください。");
 
             _availableHeroes = heroList.AsReadOnly();
             _transaction = _party.BeginTransaction();
@@ -53,7 +46,7 @@ namespace Mvvm.ViewModel
 
         public void SelectSlot(int slotIndex)
         {
-            Party.ValidateSlotIndex(slotIndex);
+            Debug.Assert(slotIndex is >= 0 and < Party.SlotCount, $"Invalid slot index: {slotIndex}");
             SelectedSlotIndex = slotIndex;
             RaiseStateChanged();
         }
@@ -66,11 +59,11 @@ namespace Mvvm.ViewModel
 
         public IReadOnlyList<HeroSelectionOption> GetHeroOptions(int slotIndex)
         {
-            Party.ValidateSlotIndex(slotIndex);
+            Debug.Assert(slotIndex is >= 0 and < Party.SlotCount, $"Invalid slot index: {slotIndex}");
             var current = _transaction.GetHero(slotIndex);
             var options = new List<HeroSelectionOption>
             {
-                new HeroSelectionOption(null, current == null)
+                new(null, current == null)
             };
 
             foreach (var hero in _availableHeroes)
