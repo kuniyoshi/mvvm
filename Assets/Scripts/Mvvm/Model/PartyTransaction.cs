@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 
 namespace Mvvm.Model
@@ -26,10 +27,11 @@ namespace Mvvm.Model
 
         public Hero? GetHero(int slotIndex)
         {
-            Party.ValidateSlotIndex(slotIndex);
+            Debug.Assert(slotIndex is >= 0 and < Party.SlotCount, $"Invalid slot index: {slotIndex}");
             return _workingSnapshot[slotIndex];
         }
 
+        [Obsolete("Hero が nullable かどうか")]
         public bool Contains(Hero hero)
         {
             if (hero == null) // TODO: Hero が nullable かどうか
@@ -42,8 +44,8 @@ namespace Mvvm.Model
 
         public void AssignHero(int slotIndex, Hero? hero)
         {
-            EnsureActive();
-            Party.ValidateSlotIndex(slotIndex);
+            Debug.Assert(slotIndex is >= 0 and < Party.SlotCount, $"Invalid slot index: {slotIndex}");
+            AssertActive();
 
             if (hero == null)
             {
@@ -67,7 +69,7 @@ namespace Mvvm.Model
 
         public void Commit()
         {
-            EnsureActive();
+            AssertActive();
             var snapshot = new Hero?[Party.SlotCount];
             Array.Copy(_workingSnapshot, snapshot, Party.SlotCount);
             _party.ApplySnapshot(snapshot);
@@ -76,16 +78,13 @@ namespace Mvvm.Model
 
         public void Rollback()
         {
-            EnsureActive();
+            AssertActive();
             _completed = true;
         }
 
-        private void EnsureActive()
+        private void AssertActive()
         {
-            if (_completed)
-            {
-                throw new InvalidOperationException("このトランザクションは既に完了しています。");
-            }
+            Debug.Assert(!_completed, "トランザクションは既に完了しています。");
         }
     }
 }
