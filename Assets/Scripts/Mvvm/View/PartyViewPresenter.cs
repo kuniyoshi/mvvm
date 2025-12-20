@@ -11,9 +11,9 @@ namespace Mvvm.View
     [RequireComponent(typeof(UIDocument))]
     public sealed class PartyViewPresenter : MonoBehaviour
     {
-        [SerializeField] private List<HeroPreset> heroPresets = new();
+        [SerializeField] private readonly List<HeroPreset> heroPresets = new();
 
-        [SerializeField] private StyleSheet? styleSheet;
+        [SerializeField] private readonly StyleSheet? styleSheet;
 
         private UIDocument? _document;
         private PartyViewModel? _viewModel;
@@ -28,12 +28,7 @@ namespace Mvvm.View
         private void Awake()
         {
             _document = GetComponent<UIDocument>();
-            if (_document == null)
-            {
-                Debug.LogError("UIDocument が見つかりません。");
-                enabled = false;
-                return;
-            }
+            Debug.Assert(_document != null, "UIDocument が見つかりません。");
 
             if (styleSheet != null)
             {

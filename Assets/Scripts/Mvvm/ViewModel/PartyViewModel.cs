@@ -79,18 +79,14 @@ namespace Mvvm.ViewModel
 
         public void AssignHero(int slotIndex, Hero? hero)
         {
-            Party.ValidateSlotIndex(slotIndex);
+            Debug.Assert(slotIndex is >= 0 and < Party.SlotCount, $"Invalid slot index: {slotIndex}");
             _transaction.AssignHero(slotIndex, hero);
             SyncSlotsFromTransaction();
         }
 
         public void AssignHeroToSelected(Hero? hero)
         {
-            if (!HasSelection)
-            {
-                throw new InvalidOperationException("枠が選択されていません。");
-            }
-
+            Debug.Assert(HasSelection, "No selection");
             AssignHero(SelectedSlotIndex, hero);
         }
 

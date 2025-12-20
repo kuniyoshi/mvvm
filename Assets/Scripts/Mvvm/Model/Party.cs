@@ -27,7 +27,7 @@ namespace Mvvm.Model
 
         public Hero? GetHero(int slotIndex)
         {
-            Debug.Assert(slotIndex >= 0 && slotIndex < SlotCount, $"不正なスロット番号です。");
+            Debug.Assert(slotIndex is >= 0 and < SlotCount, $"不正なスロット番号です。");
             return _members[slotIndex];
         }
 
@@ -43,20 +43,21 @@ namespace Mvvm.Model
             Array.Copy(snapshot, _members, SlotCount);
             MembersChanged.Invoke(_members);
 
-            static void ValidateUniqueHeroes(IEnumerable<Hero?> heroes)
-            {
-                var set = new HashSet<Hero>();
-                foreach (var hero in heroes)
-                {
-                    if (hero == null)
-                    {
-                        continue;
-                    }
+        }
 
-                    if (!set.Add(hero))
-                    {
-                        throw new InvalidOperationException("Party 内で Hero が重複しています。");
-                    }
+        private static void ValidateUniqueHeroes(IEnumerable<Hero?> heroes)
+        {
+            var set = new HashSet<Hero>();
+            foreach (var hero in heroes)
+            {
+                if (hero == null)
+                {
+                    continue;
+                }
+
+                if (!set.Add(hero))
+                {
+                    throw new InvalidOperationException("Party 内で Hero が重複しています。");
                 }
             }
         }
