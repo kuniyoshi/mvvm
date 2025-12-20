@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Mvvm.Model;
 using Mvvm.ViewModel;
@@ -27,8 +28,8 @@ namespace Mvvm.View
 
         private void Awake()
         {
-            _document = GetComponent<UIDocument>();
-            Debug.Assert(_document != null, "UIDocument が見つかりません。");
+            var document = GetComponent<UIDocument>();
+            AssertNotNull(document, "UIDocument が見つかりません。");
 
             if (styleSheet != null)
             {
@@ -42,7 +43,7 @@ namespace Mvvm.View
 
             _viewModel = new PartyViewModel(
                 new Party(),
-                heroPresets.Select(preset => preset.ToHero())
+                heroPresets.Select(static preset => preset.ToHero())
                     .ToList()
             );
             _viewModel.StateChanged += RefreshView;
@@ -231,6 +232,15 @@ namespace Mvvm.View
         private void OnSlotClicked(int slotIndex)
         {
             _viewModel?.SelectSlot(slotIndex);
+        }
+
+        [Obsolete("機能しない")]
+        private static void AssertNotNull<T>([NotNull] T? value, string message) where T : class
+        {
+            if (value == null)
+            {
+                throw new ArgumentNullException(nameof(value), message);
+            }
         }
 
         private sealed class SlotVisual
