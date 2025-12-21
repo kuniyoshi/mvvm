@@ -1,8 +1,19 @@
 {
-	"name": "View",
-	"references": [
-		"ViewModel",
-		"Model",
-		"UnityEngine.UIElementsModule"
-	]
+    "name": "View",
+    "rootNamespace": "",
+    "references": [
+        "Library",
+        "ViewModel",
+        "Model",
+        "UnityEngine.UIElementsModule"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }

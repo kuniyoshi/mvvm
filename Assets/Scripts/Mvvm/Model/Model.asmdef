@@ -1,7 +1,9 @@
 {
     "name": "Model",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:9d1d63d1205e244abbf46654f7f60b7e"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

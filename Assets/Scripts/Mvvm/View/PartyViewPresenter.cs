@@ -29,7 +29,7 @@ namespace Mvvm.View
         private void Awake()
         {
             _document = GetComponent<UIDocument>();
-            AssertNotNull(_document, "UIDocument が見つかりません。");
+            Assertion.AssertNotNull(_document, "UIDocument が見つかりません。");
 
             if (styleSheet != null)
             {
@@ -232,14 +232,6 @@ namespace Mvvm.View
         private void OnSlotClicked(int slotIndex)
         {
             _viewModel?.SelectSlot(slotIndex);
-        }
-
-        private static void AssertNotNull<T>([NotNull] T? value, string message) where T : class
-        {
-            if (value == null)
-            {
-                throw new ArgumentNullException(nameof(value), message);
-            }
         }
 
         private sealed class SlotVisual
