@@ -1,16 +1,26 @@
 .party-root {
     padding: 24px;
-    gap: 16px;
+}
+.party-root > * {
+    margin-bottom: 16px;
+}
+.party-root > *:last-child {
+    margin-bottom: 0;
 }
 
 .title {
     font-size: 20px;
-    unity-font-style: bold;
+    -unity-font-style: bold;
 }
 
 .party-slots {
     flex-direction: row;
-    gap: 12px;
+}
+.party-slots > * {
+    margin-right: 12px;
+}
+.party-slots > *:last-child {
+    margin-right: 0;
 }
 
 .party-slot {
@@ -18,7 +28,12 @@
     align-items: flex-start;
     padding: 12px;
     min-width: 150px;
-    gap: 4px;
+}
+.party-slot > * {
+    margin-bottom: 4px;
+}
+.party-slot > *:last-child {
+    margin-bottom: 0;
 }
 
 .party-slot.selected {
@@ -28,7 +43,7 @@
 
 .slot-title {
     font-size: 14px;
-    unity-font-style: bold;
+    -unity-font-style: bold;
 }
 
 .slot-name {
@@ -43,7 +58,12 @@
 
 .actions {
     flex-direction: row;
-    gap: 8px;
+}
+.actions > * {
+    margin-right: 8px;
+}
+.actions > *:last-child {
+    margin-right: 0;
 }
 
 .action-button {
@@ -55,7 +75,12 @@
     border-top-color: #dddddd;
     padding-top: 16px;
     flex-direction: column;
-    gap: 8px;
+}
+.hero-dialog > * {
+    margin-bottom: 8px;
+}
+.hero-dialog > *:last-child {
+    margin-bottom: 0;
 }
 
 .hero-dialog.hidden {
@@ -88,10 +113,16 @@
 
 .dialog-title {
     font-size: 16px;
-    unity-font-style: bold;
+    -unity-font-style: bold;
 }
 
 .dialog-actions {
     flex-direction: row;
     justify-content: flex-end;
+}
+.dialog-actions > * {
+    margin-left: 8px;
+}
+.dialog-actions > *:first-child {
+    margin-left: 0;
 }
