@@ -28,8 +28,8 @@ namespace Mvvm.View
 
         private void Awake()
         {
-            var document = GetComponent<UIDocument>();
-            AssertNotNull(document, "UIDocument が見つかりません。");
+            _document = GetComponent<UIDocument>();
+            AssertNotNull(_document, "UIDocument が見つかりません。");
 
             if (styleSheet != null)
             {
@@ -234,7 +234,6 @@ namespace Mvvm.View
             _viewModel?.SelectSlot(slotIndex);
         }
 
-        [Obsolete("機能しない")]
         private static void AssertNotNull<T>([NotNull] T? value, string message) where T : class
         {
             if (value == null)
