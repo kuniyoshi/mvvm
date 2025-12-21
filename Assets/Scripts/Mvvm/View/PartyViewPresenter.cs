@@ -11,9 +11,9 @@ namespace Mvvm.View
     [RequireComponent(typeof(UIDocument))]
     public sealed class PartyViewPresenter : MonoBehaviour
     {
-        [SerializeField] private readonly List<HeroPreset> heroPresets = new();
+        [SerializeField] private List<HeroPreset> heroPresets = new();
 
-        [SerializeField] private readonly StyleSheet? styleSheet;
+        [SerializeField] private StyleSheet? styleSheet;
 
         private UIDocument? _document;
         private PartyViewModel? _viewModel;

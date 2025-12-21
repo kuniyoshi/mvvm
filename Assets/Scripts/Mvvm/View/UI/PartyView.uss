@@ -4,7 +4,7 @@
 .party-root > * {
     margin-bottom: 16px;
 }
-.party-root > *:last-child {
+.party-root > .hero-dialog {
     margin-bottom: 0;
 }
 
@@ -19,7 +19,7 @@
 .party-slots > * {
     margin-right: 12px;
 }
-.party-slots > *:last-child {
+.party-slots > .party-slot-last {
     margin-right: 0;
 }
 
@@ -32,7 +32,7 @@
 .party-slot > * {
     margin-bottom: 4px;
 }
-.party-slot > *:last-child {
+.slot-position {
     margin-bottom: 0;
 }
 
@@ -62,7 +62,7 @@
 .actions > * {
     margin-right: 8px;
 }
-.actions > *:last-child {
+.actions > .action-button-last {
     margin-right: 0;
 }
 
@@ -79,7 +79,7 @@
 .hero-dialog > * {
     margin-bottom: 8px;
 }
-.hero-dialog > *:last-child {
+.hero-dialog > .dialog-actions {
     margin-bottom: 0;
 }
 
