@@ -124,14 +124,7 @@ namespace Mvvm.View
             {
                 var state = _viewModel.Slots[slot.Index];
                 slot.Apply(state);
-                if (_viewModel.SelectedSlotIndex == slot.Index)
-                {
-                    slot.MarkSelected(true);
-                }
-                else
-                {
-                    slot.MarkSelected(false);
-                }
+                slot.MarkSelected(_viewModel.SelectedSlotIndex == slot.Index);
             }
 
             var hasChanges = _viewModel.HasPendingChanges;
