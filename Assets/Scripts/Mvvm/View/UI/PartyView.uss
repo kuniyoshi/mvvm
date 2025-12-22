@@ -15,9 +15,11 @@
 
 .party-slots {
     flex-direction: row;
+    flex-wrap: wrap;
 }
 .party-slots > * {
     margin-right: 12px;
+    margin-bottom: 12px;
 }
 .party-slots > .party-slot-last {
     margin-right: 0;
@@ -28,6 +30,9 @@
     align-items: flex-start;
     padding: 12px;
     min-width: 150px;
+    flex-grow: 1;
+    flex-basis: 150px;
+    max-width: 220px;
 }
 .party-slot > * {
     margin-bottom: 4px;
