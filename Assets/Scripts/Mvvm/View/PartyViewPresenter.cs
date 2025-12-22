@@ -95,17 +95,25 @@ namespace Mvvm.View
                 var button = root.Q<Button>($"slot-{i}");
                 if (button == null)
                 {
-                    Debug.LogWarning($"slot-{i} が見つかりません。");
-                    continue;
+                    throw new InvalidOperationException($"slot-{i} が見つかりません。");
+                }
+
+                var titleLabel = button.Q<Label>("slot-title");
+                var nameLabel = button.Q<Label>("slot-name");
+                var statsLabel = button.Q<Label>("slot-stats");
+                var positionLabel = button.Q<Label>("slot-position");
+                if (titleLabel == null || nameLabel == null || statsLabel == null || positionLabel == null)
+                {
+                    throw new InvalidOperationException($"slot-{i} のラベル構成が不足しています。");
                 }
 
                 var visual = new SlotVisual(
                     i,
                     button,
-                    button.Q<Label>("slot-title"),
-                    button.Q<Label>("slot-name"),
-                    button.Q<Label>("slot-stats"),
-                    button.Q<Label>("slot-position"));
+                    titleLabel,
+                    nameLabel,
+                    statsLabel,
+                    positionLabel);
                 _slotVisuals.Add(visual);
 
                 var index = i;

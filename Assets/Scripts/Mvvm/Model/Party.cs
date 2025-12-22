@@ -7,7 +7,7 @@ namespace Mvvm.Model
 {
     public sealed class Party
     {
-        public const int SlotCount = 4;
+        public const int SlotCount = 5;
 
         private readonly Hero?[] _members = new Hero?[SlotCount];
 

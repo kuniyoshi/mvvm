@@ -370,7 +370,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28e5ff6845df4b9eaecdc5f7fd440c0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: View::Mvvm.View.PartyViewPresenter
-  heroPresets: []
+  heroPresets:
+  - Name: Satoka
+    Hp: 101
+    Attack: 100
+    Position: 2
+  - Name: Io
+    Hp: 102
+    Attack: 100
+    Position: 0
+  - Name: Tsubame
+    Hp: 103
+    Attack: 100
+    Position: 0
+  - Name: Mana
+    Hp: 104
+    Attack: 100
+    Position: 1
+  - Name: Yumi
+    Hp: 105
+    Attack: 100
+    Position: 1
   styleSheet: {fileID: 7433441132597879392, guid: 3bc1d462c20848e8afa2ad5421d88bea, type: 3}
 --- !u!114 &694367835
 MonoBehaviour:
@@ -386,7 +406,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.dll::UnityEngine.UIElements.UIDocument
   m_PanelSettings: {fileID: 0}
   m_ParentUI: {fileID: 0}
-  sourceAsset: {fileID: 0}
+  sourceAsset: {fileID: 9197481963319205126, guid: a8f5cd2f8aa349c6bc7a8d0e22fc1b3a, type: 3}
   m_SortingOrder: 0
   m_Position: 0
   m_WorldSpaceSizeMode: 1
