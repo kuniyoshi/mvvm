@@ -31,14 +31,8 @@ namespace Mvvm.Model
             return _workingSnapshot[slotIndex];
         }
 
-        [Obsolete("Hero が nullable かどうか")]
         public bool Contains(Hero hero)
         {
-            if (hero == null) // TODO: Hero が nullable かどうか
-            {
-                throw new ArgumentNullException(nameof(hero));
-            }
-
             return _workingSnapshot.Any(h => ReferenceEquals(h, hero));
         }
 
