@@ -25,8 +25,9 @@ namespace Mvvm.ViewModel
 
             _availableHeroes = heroList.AsReadOnly();
             _transaction = _party.BeginTransaction();
+            var stats = PartyBuffCalculator.Calculate(_transaction.Members);
             _slots = Enumerable.Range(0, Party.SlotCount)
-                .Select(i => new PartySlotViewModel(i, _transaction.GetHero(i)))
+                .Select(i => new PartySlotViewModel(i, _transaction.GetHero(i), stats[i]))
                 .ToList();
 
             RaiseStateChanged();
@@ -118,9 +119,10 @@ namespace Mvvm.ViewModel
 
         private void SyncSlotsFromTransaction()
         {
+            var stats = PartyBuffCalculator.Calculate(_transaction.Members);
             for (var i = 0; i < _slots.Count; i++)
             {
-                _slots[i].Update(_transaction.GetHero(i));
+                _slots[i].Update(_transaction.GetHero(i), stats[i]);
             }
 
             RaiseStateChanged();
