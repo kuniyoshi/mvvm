@@ -4,8 +4,8 @@ namespace Mvvm.ViewModel
 {
     public sealed class PartySlotViewModel
     {
-        public int Index { get; }
-        public Hero? Hero { get; private set; }
+        private int Index { get; }
+        private Hero? Hero { get; set; }
         private HeroStats? _stats;
 
         public PartySlotViewModel(int index, Hero? hero, HeroStats? stats)

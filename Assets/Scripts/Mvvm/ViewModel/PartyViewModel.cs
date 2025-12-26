@@ -35,8 +35,6 @@ namespace Mvvm.ViewModel
 
         public IReadOnlyList<PartySlotViewModel> Slots => _slots;
 
-        public IReadOnlyList<Hero> AvailableHeroes => _availableHeroes;
-
         public int SelectedSlotIndex { get; private set; } = -1;
 
         public PartySlotViewModel? SelectedSlot => SelectedSlotIndex >= 0 ? _slots[SelectedSlotIndex] : null;
@@ -78,13 +76,6 @@ namespace Mvvm.ViewModel
             return options;
         }
 
-        public void AssignHero(int slotIndex, Hero? hero)
-        {
-            Debug.Assert(slotIndex is >= 0 and < Party.SlotCount, $"Invalid slot index: {slotIndex}");
-            _transaction.AssignHero(slotIndex, hero);
-            SyncSlotsFromTransaction();
-        }
-
         public void AssignHeroToSelected(Hero? hero)
         {
             Debug.Assert(HasSelection, "No selection");
@@ -112,6 +103,13 @@ namespace Mvvm.ViewModel
             SyncSlotsFromTransaction();
         }
 
+        private void AssignHero(int slotIndex, Hero? hero)
+        {
+            Debug.Assert(slotIndex is >= 0 and < Party.SlotCount, $"Invalid slot index: {slotIndex}");
+            _transaction.AssignHero(slotIndex, hero);
+            SyncSlotsFromTransaction();
+        }
+
         private void RestartTransaction()
         {
             _transaction = _party.BeginTransaction();
@@ -130,7 +128,7 @@ namespace Mvvm.ViewModel
 
         private void RaiseStateChanged()
         {
-            StateChanged?.Invoke();
+            StateChanged.Invoke();
         }
     }
 }

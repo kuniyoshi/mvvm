@@ -17,7 +17,7 @@ namespace Mvvm.Model
         {
         }
 
-        public Party(IEnumerable<Hero?> initialMembers)
+        private Party(IEnumerable<Hero?> initialMembers)
         {
             var list = initialMembers.ToList();
             Debug.Assert(list.Count == SlotCount, $"Party の枠数は {SlotCount} 固定です。（実際の値: {list.Count}）");

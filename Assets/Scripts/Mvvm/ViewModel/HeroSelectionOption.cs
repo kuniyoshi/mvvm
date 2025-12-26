@@ -17,8 +17,6 @@ namespace Mvvm.ViewModel
 
         public string Name => Hero?.Name ?? "未設定";
 
-        public string PositionText => Hero?.Position.ToString() ?? "-";
-
         public string StatText => Hero != null ? $"HP {Hero.Hp} / ATK {Hero.Attack}" : "空枠";
     }
 }

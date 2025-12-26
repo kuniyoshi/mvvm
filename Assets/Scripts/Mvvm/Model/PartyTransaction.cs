@@ -56,11 +56,6 @@ namespace Mvvm.Model
             _workingSnapshot[slotIndex] = hero;
         }
 
-        public void ClearSlot(int slotIndex)
-        {
-            AssignHero(slotIndex, null);
-        }
-
         public void Commit()
         {
             AssertActive();
